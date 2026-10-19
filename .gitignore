@@ -1,0 +1,46 @@
+# Datasets and derived tables
+data/
+*.msp
+*.mspec
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.parquet
+
+# Training and evaluation artifacts
+checkpoints/
+weights/
+runs/
+logs/
+outputs/
+results/
+cache/
+*.log
+*.csv
+
+# Python and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Local files
+.DS_Store
+.idea/
+.vscode/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key

@@ -1,0 +1,157 @@
+# FraHi positive-ion example; dataset-specific settings inherit massbank_P.yml.
+# Review filters, split fractions and epoch budget for your experiment.
+# num_epochs=1 is retained from the original example; increase for a full run.
+run_name: massbank_P_frahi
+data:
+  all_inst_type:
+  - FT
+  - QTOF
+  - IT
+  base_dir: outputs/massbank_P_frahi
+  casmi22_dp: casmi_2022
+  casmi22_nces:
+  - 70
+  casmi22_num_entries: -1
+  casmi_fp: false
+  ce_key: ace
+  convert_ce: true
+  fp_types:
+  - morgan
+  - rdkit
+  - maccs
+  frag_mode:
+  - HCD
+  inst_type:
+  - FT
+  ints_thresh: 0.0
+  ion_mode: P
+  mz_bin_res: 0.1
+  mz_max: 500.0
+  nist_version: 20
+  neg_prec_type:
+  - '[M-H]-'
+  num_entries: -1
+  pos_prec_type:
+  - '[M+H]+'
+  preproc_ce: normalize
+  primary_dset:
+  - massbank
+  proc_dp: data/proc/massbank
+  res:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  secondary_dset: []
+  spec_meta_global: true
+  spec_type: MS2
+  spectrum_normalization: l1
+  subsample_seed: 1
+  subsample_size: 0
+  transform: log10over3
+  process_spec_old: false
+  merge_collision_energies: false
+  peak_target_max: 256
+  require_fragment_candidates: true
+  fragment_hydrogen_shifts:
+  - -2
+  - -1
+  - 0
+  - 1
+  - 2
+  fragment_max_candidates: 512
+  hdse_graph_cache: null
+model:
+  prediction_head: frahi
+  layer_type: GINE+Transformer
+  layers: 8
+  bidirectional_prediction: true
+  dropout: 0.4
+  embed_dim: -1
+  embed_linear: false
+  embed_types:
+  - hdse
+  ff_h_dim: 1000
+  ff_num_layers: 2
+  model_seed: 999
+  output_normalization: l1
+  prec_mass_offset: 0
+  protect_baseline: true
+  local_residual_log_ratio_max: 0.5
+  hierarchical_residual_log_ratio_max: 0.15
+  hierarchical_adapter_ratio: 0.25
+  peak_decoder_dropout: 0.1
+  peak_decoder_layers: 2
+run:
+  amp: false
+  base_dir: outputs/massbank_P_frahi
+  batch_loss_agg: mean
+  batch_size: 32
+  casmi22_pred_all: false
+  clip_grad_norm: 10.0
+  cuda_deterministic: false
+  device: cuda:0
+  do_casmi22: false
+  do_test: true
+  early_stop_thresh: 7
+  filter_spec: false
+  grad_acc_interval: 1
+  ignore_casmi_in_split: false
+  learning_rate: 0.0001
+  log_auxiliary: true
+  log_tqdm: true
+  loss: cos
+  non_blocking: false
+  num_epochs: 1
+  num_track: 5
+  num_workers: 8
+  optimizer: adamw
+  pin_memory: true
+  pred_viz: true
+  pretrained: null
+  print_stats: true
+  save_media: true
+  save_split: true
+  save_state: true
+  save_test_sims: true
+  scheduler: plateau
+  scheduler_end_lr: 1.0e-09
+  scheduler_period: 2
+  scheduler_ratio: 0.8
+  sec_frac: 1.0
+  sim: cos
+  split_key: inchikey_s
+  split_seed: 520
+  stop_key: mol_loss_obj_mean
+  test_frac: 0.1
+  test_sets:
+  - train
+  - val
+  - test
+  track_plot_title: true
+  train_seed: 1314
+  use_val_info: true
+  val_frac: 0.1
+  weight_decay: 0.001
+  baseline_loss_weight: 1.0
+  baseline_clip_grad_norm: 100000
+  non_degradation_weight: 0.5
+  non_degradation_warmup_epochs: 5
+  validation_fallback: true
+  scheduler_monitor: baseline
+  branch_metric_sets:
+  - val
+  - test
+  sim_metrics:
+  - cosine
+  - modified_cosine
+  - spectral_entropy
+  peak_spectrum_weight: 1.0
+  peak_existence_weight: 0.1
+  peak_intensity_weight: 0.25
+  peak_mass_weight: 0.0
+  peak_consistency_weight: 0.0
+  fragment_match_tolerance: 0.2

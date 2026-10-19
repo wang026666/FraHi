@@ -1,0 +1,14 @@
+# Install matching PyTorch and PyG extension wheels first;
+# see README.md, Installation. These pins target Python 3.10.
+communities==3.0.0
+joblib==1.4.2
+matplotlib==3.9.2
+networkx==3.2.1
+numpy==1.23.5
+pandas==2.3.0
+pyyaml==6.0.2
+rdkit==2024.9.2
+requests==2.32.3
+scipy==1.13.1
+torch-geometric==2.6.1
+tqdm==4.66.5
